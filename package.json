@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "react": "16.5.0",
-    "react-native": "0.57.0"
+    "react-native": "0.57.0",
+    "react-navigation": "^2.12.1"
   },
   "devDependencies": {
     "axios": "^0.18.0",
