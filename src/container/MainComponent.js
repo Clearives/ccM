@@ -56,7 +56,7 @@ const TabRouteConfigs = {
                     normalImage={require('../resources/tab_bar/me.png')}
                     selectedImage={require('../resources/tab_bar/me_selected.png')}
                 />
-            ),
+            )
         },
     }
 };
@@ -91,17 +91,19 @@ const TabNavigatorConfigs = {
 };
 const Tab = createBottomTabNavigator(TabRouteConfigs, TabNavigatorConfigs);
 
-Tab.navigationOptions = ({ navigation }) => {
+Tab.navigationOptions = ({ navigation, navigationOptions }) => {
     const { routes, index } = navigation.state;
-    const navigationOptions = {};
+    let options = {}
     if (routes[index].routeName === 'Home') {
-        navigationOptions.title = '首页';
+        options.title = '首页';
     } else if (routes[index].routeName === 'Discover') {
-        navigationOptions.title = '发现';
+        options.title = '发现';
     } else if (routes[index].routeName === 'Mine') {
-        navigationOptions.title = '我';
+        options = {
+            title: '我'
+        }
     }
-    return navigationOptions;
+    return Object.assign(navigationOptions, options);
 }
 const StackRouteConfigs = {
     Tab: {
