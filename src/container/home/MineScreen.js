@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from "react-native";
-import TextButton from '../../components/TextButton'
+import TextButton from '../../components/TextButton';
+import ListItem from '../../components/ListItem'
 export default class MineScreen extends Component {
     constructor(props) {
         super(props)
@@ -53,9 +54,17 @@ export default class MineScreen extends Component {
                 </View>
                 <View>
                     <TextButton
+                        style={{marginBottom: 20}}
                         text={`按钮`}
                         onPress={() => {alert('点击')}}
                     />
+                    <ListItem
+                        listTitle={`我的投资`}
+                        style={styles.listItem}
+                        onPress={() => {alert('我的投资')}}
+                    >
+                        <Text style={styles.textOther}>跳转</Text>
+                    </ListItem>
                 </View>
             </View>
         );
@@ -117,6 +126,12 @@ const styles = StyleSheet.create({
     cellImg: {
         width: 10,
         height: 17
-    }
+    },
+    listItem: {
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    textOther: {
 
+    }
 })
