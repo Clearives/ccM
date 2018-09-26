@@ -3,7 +3,7 @@ import {StyleSheet, View, Text, TouchableHighlight, Image} from 'react-native';
 import PropTypes from 'prop-types';
 
 /**
- * 可点击的文本按钮
+ * ListItem
  *
  * @export
  * @class ListItem
