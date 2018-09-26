@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableWithoutFeedback} from 'react-native';
+import {StyleSheet, View, Text, TouchableHighlight} from 'react-native';
 import PropTypes from 'prop-types';
 
 /**
@@ -31,11 +31,15 @@ export default class TextButton extends Component {
 
     render() {
         return (
-            <TouchableWithoutFeedback onPress={this.props.onPress}>
+            <TouchableHighlight
+                activeOpacity={1}
+                underlayColor={`transparent`}
+                onPress={this.props.onPress}
+            >
                 <View style={[styles.container, this.props.style]}>
                     <Text style={[styles.title, this.props.textStyle]}>{this.props.text}</Text>
                 </View>
-            </TouchableWithoutFeedback>
+            </TouchableHighlight>
         );
     }
 }

@@ -54,6 +54,7 @@ export default class MineScreen extends Component {
                 <View>
                     <TextButton
                         text={`按钮`}
+                        onPress={() => {alert('点击')}}
                     />
                 </View>
             </View>
