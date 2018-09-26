@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from "react-native";
+import TextButton from '../../components/TextButton'
 export default class MineScreen extends Component {
     constructor(props) {
         super(props)
@@ -43,6 +44,17 @@ export default class MineScreen extends Component {
                         <Text style={styles.cellText}>WeiChat</Text>
                         <View style={styles.cellImage}><Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/></View>
                     </View>
+                </View>
+                <View style={[styles.content]}>
+                    <View style={styles.cell}>
+                        <Text style={styles.cellText}>我的组件</Text>
+                        <View style={styles.cellImage}><Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/></View>
+                    </View>
+                </View>
+                <View>
+                    <TextButton
+                        text={`按钮`}
+                    />
                 </View>
             </View>
         );
