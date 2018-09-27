@@ -23,10 +23,13 @@ export default class MineScreen extends Component {
                     </View>
                 </View>
                 <View style={[styles.content, {marginTop: 80}]}>
-                    <View style={styles.cell}>
-                        <Text style={styles.cellText}>我的相册</Text>
-                        <View style={styles.cellImage}><Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/></View>
-                    </View>
+                    <ListItem
+                        listTitle={`我的相册`}
+                        style={styles.listItem}
+                        onPress={() => {alert('我的相册')}}
+                    >
+                        <Text style={styles.textOther}>photo</Text>
+                    </ListItem>
                 </View>
                 <View style={styles.content}>
                     <TouchableOpacity onPress={() => this.goWeb({url: 'https://github.com/Clearives/ccM',title: 'ccM'})}>
