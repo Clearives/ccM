@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from "react-native";
 import TextButton from '../../components/TextButton';
+import ImageButton from '../../components/ImageButton'
 import ListItem from '../../components/ListItem'
 export default class MineScreen extends Component {
     constructor(props) {
@@ -21,6 +22,11 @@ export default class MineScreen extends Component {
                             source={require('../../resources/img/avtar.jpg')}
                             style={styles.avtarImg}/>
                     </View>
+                    <ImageButton
+                        style={styles.messageButton}
+                        source={require('../../resources/icon/message.png')}
+                        onPress={() => {alert('message')}}
+                    />
                 </View>
                 <View style={[styles.content, {marginTop: 80}]}>
                     <ListItem
@@ -136,5 +142,13 @@ const styles = StyleSheet.create({
     },
     textOther: {
 
+    },
+    messageButton: {
+        width: 100,
+        marginTop: 20,
+        marginBottom: 20,
+        position: 'absolute',
+        right: 20,
+        bottom: 20
     }
 })
