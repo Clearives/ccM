@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+# Required for Swift apps
+platform :ios, '8.0'
+use_frameworks!
+inhibit_all_warnings!
+
+
+# The target name is most likely the name of your project.
+target 'ccM' do
+
+
+end
