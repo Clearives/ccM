@@ -6,7 +6,14 @@ import ImageButton from '../../components/ImageButton'
 import ListItem from '../../components/ListItem'
 export default class MineScreen extends BaseScreen {
     constructor(props) {
-        super(props)
+        super(props);
+        this.navType = 0;
+        this.navTitle = '我的';
+        this.navShowRight = true;
+        this.navRightView = <ImageButton
+            source={require('../../resources/icon/message.png')}
+            onPress={() => {alert('我是导航右侧组件')}}
+        />
     }
     goWeb = (item) => {
         this.props.navigation.push('Web', {
@@ -14,7 +21,10 @@ export default class MineScreen extends BaseScreen {
             title: item.title
         })
     }
-    render() {
+    handleBack = () => {
+        alert('这个页面返回不了')
+    }
+    renderNormalContentView = () => {
         return (
             <View style={styles.container}>
                 <View style={styles.banner}>
