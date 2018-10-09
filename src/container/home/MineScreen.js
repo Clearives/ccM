@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from "react-native";
+import BaseScreen from '../../components/screen/BaseScreen'
 import TextButton from '../../components/TextButton';
 import ImageButton from '../../components/ImageButton'
 import ListItem from '../../components/ListItem'
-export default class MineScreen extends Component {
+export default class MineScreen extends BaseScreen {
     constructor(props) {
         super(props)
     }
