@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, Animated, Easing} from "react-native";
 import BaseHeader from '../BaseHeader'
 
 /**
@@ -12,6 +12,13 @@ import BaseHeader from '../BaseHeader'
 export default class BaseScreen extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            screenId: new Date().getTime().toString(),
+            rotateValue: new Animated.Value(0)
+        }
+        this.isAnimating = false;
+
+        this.showType = 1;
         this.navType = 0; // 0线上 1隐藏
         this.navBackImageSource = null; // 返回按钮图片
         this.navTitle = ''; // 导航栏标题文本
@@ -36,6 +43,46 @@ export default class BaseScreen extends Component {
     }
 
     renderNormalContentView = () => null
+    /** 更新视图，重新render */
+    updateScreen = () => {
+        this.setState({screenId: new Date().getTime().toString()})
+    }
+
+    startAnimation() {
+        if (this.showType === 0) {
+            this.isAnimating = true;
+            this.state.rotateValue.setValue(0);
+            Animated.timing(this.state.rotateValue, {
+                toValue: 1,
+                duration: 1000,
+                easing: Easing.linear
+            }).start(() => this.startAnimation());
+        } else {
+            this.isAnimating = false;
+        }
+    }
+
+    updateAnimation() {
+        if (this.isAnimating === false) {
+            this.startAnimation();
+        }
+    }
+
+    showLoadingView = () => {
+        this.showType = 0;
+        this.updateAnimation();
+        this.updateScreen();
+    }
+
+    showNormalView = () => {
+        this.showType = 1;
+        this.updateScreen();
+    }
+
+    showERrrorView = () => {
+        this.showType = 1;
+        this.updateScreen();
+    }
 
     handleBack = () => {
         this.props.navigation.pop();
@@ -64,7 +111,37 @@ export default class BaseScreen extends Component {
                 />
             );
         }
-        contentView = this.renderNormalContentView();
+        if (this.showType === 0) {
+            // 加载中
+            let loadingImageWidthOrHeight = 44;
+            contentView = (
+                <View style={styles.loadingAndErrorViewContainer}>
+                    <View style={styles.loadingImageContainer}>
+                        <Animated.Image
+                            source={require('../../resources/icon/loading.png')}
+                            style={{
+                                width: loadingImageWidthOrHeight,
+                                height: loadingImageWidthOrHeight,
+                                transform: [
+                                    {
+                                        rotateZ: this.state.rotateValue.interpolate({
+                                            inputRange: [0, 1],
+                                            outputRange: ['0deg', '360deg']
+                                        })
+                                    }
+                                ]
+                            }}
+                        />
+                    </View>
+                </View>
+            );
+        } else if (this.showType === 1) {
+            // 加载成功
+            contentView = this.renderNormalContentView();
+        } else if (this.showType === 2) {
+            // 加载失败
+            contentView = null;
+        }
         return (
             <View style={styles.container}>
                 <View style={styles.container}>
@@ -81,5 +158,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor:'white'
-    }
+    },
+    loadingAndErrorViewContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white'
+    },
+    loadingImageContainer: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
 });

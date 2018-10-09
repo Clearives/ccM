@@ -9,11 +9,20 @@ export default class MineScreen extends BaseScreen {
         super(props);
         this.navType = 0;
         this.navTitle = '我的';
+        this.navShowLine = true;
         this.navShowRight = true;
         this.navRightView = <ImageButton
             source={require('../../resources/icon/message.png')}
             onPress={() => {alert('我是导航右侧组件')}}
         />
+    }
+    componentWillMount() {
+        this.showLoadingView();
+    }
+    componentDidMount() {
+        setTimeout(() => {
+            this.showNormalView();
+        }, 1000)
     }
     goWeb = (item) => {
         this.props.navigation.push('Web', {
