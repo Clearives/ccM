@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from "react-native";
+import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from "react-native";
 import BaseScreen from '../../components/screen/BaseScreen'
 import TextButton from '../../components/TextButton';
 import ImageButton from '../../components/ImageButton'
@@ -26,67 +26,69 @@ export default class MineScreen extends BaseScreen {
     }
     renderNormalContentView = () => {
         return (
-            <View style={styles.container}>
-                <View style={styles.banner}>
-                    <View style={styles.avtar}>
-                        <Image
-                            source={require('../../resources/img/avtar.jpg')}
-                            style={styles.avtarImg}/>
-                    </View>
-                    <ImageButton
-                        style={styles.messageButton}
-                        source={require('../../resources/icon/message.png')}
-                        onPress={() => {alert('message')}}
-                    />
-                </View>
-                <View style={[styles.content, {marginTop: 80}]}>
-                    <ListItem
-                        listTitle={`我的相册`}
-                        style={styles.listItem}
-                        onPress={() => {alert('我的相册')}}
-                    >
-                        <Text style={styles.textOther}>photo</Text>
-                    </ListItem>
-                </View>
-                <View style={styles.content}>
-                    <TouchableOpacity onPress={() => this.goWeb({url: 'https://github.com/Clearives/ccM',title: 'ccM'})}>
-                        <View style={styles.cell}>
-                            <Text style={styles.cellText}>Github</Text>
-                            <View style={styles.cellImage}>
-                                <Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/>
-                            </View>
+            <ScrollView>
+                <View style={styles.container}>
+                    <View style={styles.banner}>
+                        <View style={styles.avtar}>
+                            <Image
+                                source={require('../../resources/img/avtar.jpg')}
+                                style={styles.avtarImg}/>
                         </View>
-                    </TouchableOpacity>
-                    <View style={styles.cell}>
-                        <Text style={styles.cellText}>WeiBo</Text>
-                        <View style={styles.cellImage}><Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/></View>
+                        <ImageButton
+                            style={styles.messageButton}
+                            source={require('../../resources/icon/message.png')}
+                            onPress={() => {alert('message')}}
+                        />
                     </View>
-                    <View style={styles.cell}>
-                        <Text style={styles.cellText}>WeiChat</Text>
-                        <View style={styles.cellImage}><Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/></View>
+                    <View style={[styles.content, {marginTop: 80}]}>
+                        <ListItem
+                            listTitle={`我的相册`}
+                            style={styles.listItem}
+                            onPress={() => {alert('我的相册')}}
+                        >
+                            <Text style={styles.textOther}>photo</Text>
+                        </ListItem>
+                    </View>
+                    <View style={styles.content}>
+                        <TouchableOpacity onPress={() => this.goWeb({url: 'https://github.com/Clearives/ccM',title: 'ccM'})}>
+                            <View style={styles.cell}>
+                                <Text style={styles.cellText}>Github</Text>
+                                <View style={styles.cellImage}>
+                                    <Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={styles.cell}>
+                            <Text style={styles.cellText}>WeiBo</Text>
+                            <View style={styles.cellImage}><Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/></View>
+                        </View>
+                        <View style={styles.cell}>
+                            <Text style={styles.cellText}>WeiChat</Text>
+                            <View style={styles.cellImage}><Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/></View>
+                        </View>
+                    </View>
+                    <View style={[styles.content]}>
+                        <View style={styles.cell}>
+                            <Text style={styles.cellText}>我的组件</Text>
+                            <View style={styles.cellImage}><Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/></View>
+                        </View>
+                    </View>
+                    <View>
+                        <TextButton
+                            style={{marginBottom: 20}}
+                            text={`按钮`}
+                            onPress={() => {alert('点击')}}
+                        />
+                        <ListItem
+                            listTitle={`我的投资`}
+                            style={styles.listItem}
+                            onPress={() => {alert('我的投资')}}
+                        >
+                            <Text style={styles.textOther}>跳转</Text>
+                        </ListItem>
                     </View>
                 </View>
-                <View style={[styles.content]}>
-                    <View style={styles.cell}>
-                        <Text style={styles.cellText}>我的组件</Text>
-                        <View style={styles.cellImage}><Image source={require('../../resources/icon/next.png')} style={styles.cellImg}/></View>
-                    </View>
-                </View>
-                <View>
-                    <TextButton
-                        style={{marginBottom: 20}}
-                        text={`按钮`}
-                        onPress={() => {alert('点击')}}
-                    />
-                    <ListItem
-                        listTitle={`我的投资`}
-                        style={styles.listItem}
-                        onPress={() => {alert('我的投资')}}
-                    >
-                        <Text style={styles.textOther}>跳转</Text>
-                    </ListItem>
-                </View>
-            </View>
+            </ScrollView>
         );
     }
 }
