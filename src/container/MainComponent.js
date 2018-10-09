@@ -100,7 +100,7 @@ Tab.navigationOptions = ({ navigation, navigationOptions }) => {
         options.title = '发现';
     } else if (routes[index].routeName === 'Mine') {
         options = {
-            title: '我'
+            header: null
         }
     }
     return Object.assign(navigationOptions, options);
