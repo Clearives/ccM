@@ -5,7 +5,7 @@ import {
     WebView,
     ActivityIndicator
 } from 'react-native';
-import ccMethod from '../constants/ccMethod'
+import ccMethod from '../../constants/ccMethod'
 
 const WEBVIEW_REF = 'webview';
 export default class WebScreen extends React.Component {

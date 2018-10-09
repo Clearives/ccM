@@ -6,7 +6,7 @@ import DiscoverScreen from "./home/DiscoverScreen";
 import MineScreen from "./home/MineScreen";
 import TabBarItem from "../components/TabBarItem";
 import MovieScreen from "./movie/MovieScreen";
-import WebScreen from "../components/WebScreen";
+import WebScreen from "../components/screen/WebScreen";
 console.ignoredYellowBox = ['Remote debugger'];
 export default class MainComponent extends Component {
     render() {
