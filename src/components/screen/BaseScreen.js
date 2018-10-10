@@ -12,10 +12,8 @@ import BaseHeader from '../BaseHeader'
 export default class BaseScreen extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            screenId: new Date().getTime().toString(),
-            rotateValue: new Animated.Value(0)
-        }
+
+        this.rotateValue = new Animated.Value(0);
         this.isAnimating = false;
 
         this.showType = 1;
@@ -51,8 +49,8 @@ export default class BaseScreen extends Component {
     startAnimation() {
         if (this.showType === 0) {
             this.isAnimating = true;
-            this.state.rotateValue.setValue(0);
-            Animated.timing(this.state.rotateValue, {
+            this.rotateValue.setValue(0);
+            Animated.timing(this.rotateValue, {
                 toValue: 1,
                 duration: 1000,
                 easing: Easing.linear
@@ -124,7 +122,7 @@ export default class BaseScreen extends Component {
                                 height: loadingImageWidthOrHeight,
                                 transform: [
                                     {
-                                        rotateZ: this.state.rotateValue.interpolate({
+                                        rotateZ: this.rotateValue.interpolate({
                                             inputRange: [0, 1],
                                             outputRange: ['0deg', '360deg']
                                         })
