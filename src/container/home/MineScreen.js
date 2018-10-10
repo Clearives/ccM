@@ -22,7 +22,7 @@ export default class MineScreen extends BaseScreen {
     componentDidMount() {
         setTimeout(() => {
             this.showNormalView();
-        }, 1000)
+        }, 300)
     }
     goWeb = (item) => {
         this.props.navigation.push('Web', {
@@ -51,11 +51,11 @@ export default class MineScreen extends BaseScreen {
                     </View>
                     <View style={[styles.content, {marginTop: 80}]}>
                         <ListItem
-                            listTitle={`我的相册`}
+                            listTitle={`我的组件`}
                             style={styles.listItem}
-                            onPress={() => {alert('我的相册')}}
+                            onPress={() => {this.props.navigation.push('UiIndex')}}
                         >
-                            <Text style={styles.textOther}>photo</Text>
+                            <Text style={styles.textOther}>UI</Text>
                         </ListItem>
                     </View>
                     <View style={styles.content}>
