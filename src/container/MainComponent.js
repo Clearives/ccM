@@ -7,6 +7,7 @@ import MineScreen from "./home/MineScreen";
 import TabBarItem from "../components/TabBarItem";
 import MovieScreen from "./movie/MovieScreen";
 import WebScreen from "../components/screen/WebScreen";
+import UiIndexScreen from "./ui/UiIndexScreen"
 console.ignoredYellowBox = ['Remote debugger'];
 export default class MainComponent extends Component {
     render() {
@@ -114,6 +115,9 @@ const StackRouteConfigs = {
     },
     Web: {
         screen: WebScreen
+    },
+    UiIndex: {
+        screen: UiIndexScreen
     }
 };
 // const NavigationOptions = config => {
