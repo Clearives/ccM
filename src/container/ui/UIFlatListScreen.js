@@ -24,14 +24,17 @@ export default class UIFlatListScreen extends BaseScreen {
 
         this.navTitle = 'UIFlatList';
         this.navShowLine = true;
+        this.navShowRight = true;
+        this.navRightView = <Text onPress={() => {this._refresh()}}>刷新</Text>
     }
 
     componentWillMount() {
         this.showLoadingView();
+        this.Refresh();
     }
 
     componentDidMount() {
-        this.Refresh();
+
     }
 
     Refresh = () => {
@@ -54,7 +57,7 @@ export default class UIFlatListScreen extends BaseScreen {
 
     LoadMore = () => {
         let newData = [];
-        for (let i = 6; i < 100; i ++) {
+        for (let i = 6; i < 10; i ++) {
             let obj = {
                 id: `新数据${i}`
             };
@@ -106,7 +109,7 @@ export default class UIFlatListScreen extends BaseScreen {
     _renderFooter = () => {
         if (this.state.data.length !== 0 && this.state.isLoadMoreing === 'LoadMoreing') {
             return (
-                <View style={[styles.box, {backgroundColor: '#FF557F'}]}>
+                <View style={[styles.box]}>
                     <Text>{'正在加载....'}</Text>
                 </View>
             )
@@ -123,7 +126,7 @@ export default class UIFlatListScreen extends BaseScreen {
     };
 
     _refresh = () => {
-        // this._flatList.scrollToIndex({viewPosition: 44, index: 0});
+        this._flatList.scrollToIndex({viewPosition: 44, index: 0});
         this.Refresh();
     }
 
@@ -131,11 +134,6 @@ export default class UIFlatListScreen extends BaseScreen {
         return (
             <View style={styles.container}>
 
-                <View style={{width: width, height: 44, flexDirection: 'row'}}>
-                    <View style={[styles.box, {flex: 1, backgroundColor: 'skyblue'}]}>
-                        <Text onPress={this._refresh}>刷新</Text>
-                    </View>
-                </View>
                 <FlatList
                     showsVerticalScrollIndicator={false}//是否显示垂直滚动条
                     showsHorizontalScrollIndicator={false}//是否显示水平滚动条
@@ -147,9 +145,10 @@ export default class UIFlatListScreen extends BaseScreen {
                     ItemSeparatorComponent={this._renderSeparator}//每行底部
                     enableEmptySections={true}//数据可以为空
                     keyExtractor={(item, index) => index.toString()}
-                    onEndReachedThreshold={0.1}//执行上啦的时候10%执行
+                    onEndReachedThreshold={0}//执行上啦的时候10%执行
                     onEndReached={this.LoadMore}
                     data={this.state.data}
+                    extraData={this.state}
                     refreshControl={
                         <RefreshControl
                             refreshing={this.state.refreshing}
