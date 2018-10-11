@@ -20,16 +20,19 @@ export default class MineScreen extends BaseScreen {
         this.state = {
             UIData: [
                 {
-                    key: 'a',
-                    title: 'FlatList'
+                    key: '1',
+                    title: 'FlatList',
+                    url: 'UIFlatList'
                 },
                 {
-                    key: 'b',
-                    title: 'Modal'
+                    key: '2',
+                    title: 'Modal',
+                    url: 'UIModal'
                 },
                 {
-                    key: 'c',
-                    title: 'Button'
+                    key: '3',
+                    title: 'Button',
+                    url: 'UIButton'
                 }
             ]
         }
@@ -46,7 +49,7 @@ export default class MineScreen extends BaseScreen {
         return (
             <ListItem
                 listTitle={item.title}
-                onPress={() => {alert(`这是${item.title}`)}}
+                onPress={() => {this.props.navigation.push(item.url)}}
             >
             </ListItem>
         )
