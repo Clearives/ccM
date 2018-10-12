@@ -4,6 +4,7 @@ import {createStackNavigator, createBottomTabNavigator} from "react-navigation";
 import HomeScreen from "./home/HomeScreen";
 import DiscoverScreen from "./home/DiscoverScreen";
 import MineScreen from "./home/MineScreen";
+import GalleryScreen from "./home/GalleryScreen";
 import TabBarItem from "../components/TabBarItem";
 import MovieScreen from "./movie/MovieScreen";
 import WebScreen from "../components/screen/WebScreen";
@@ -34,6 +35,20 @@ const TabRouteConfigs = {
             ),
         }
     },
+    Gallery: {
+        screen: GalleryScreen,
+        navigationOptions: {
+            tabBarLabel: '图库',
+            tabBarIcon: ({focused, tintColor}) => (
+                <TabBarItem
+                    tintColor={tintColor}
+                    focused={focused}
+                    normalImage={require('../resources/tab_bar/gallery.png')}
+                    selectedImage={require('../resources/tab_bar/gallery_selected.png')}
+                />
+            ),
+        },
+    },
     Discover: {
         screen: DiscoverScreen,
         navigationOptions: {
@@ -47,8 +62,7 @@ const TabRouteConfigs = {
                 />
             ),
         },
-    }
-    ,
+    },
     Mine: {
         screen: MineScreen,
         navigationOptions: {
@@ -100,9 +114,13 @@ Tab.navigationOptions = ({ navigation, navigationOptions }) => {
     let options = {}
     if (routes[index].routeName === 'Home') {
         options.title = '首页';
+    } else if (routes[index].routeName === 'Gallery') {
+        options = {
+            header: null
+        }
     } else if (routes[index].routeName === 'Discover') {
         options.title = '发现';
-    } else if (routes[index].routeName === 'Mine') {
+    }else if (routes[index].routeName === 'Mine') {
         options = {
             header: null
         }
