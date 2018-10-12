@@ -130,7 +130,7 @@ export default class UIFlatListScreen extends BaseScreen {
         this.Refresh();
     }
 
-    renderNormalContentView = () => {
+    _render = () => {
         return (
             <View style={styles.container}>
 

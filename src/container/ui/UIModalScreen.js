@@ -48,7 +48,7 @@ export default class UIModalScreen extends BaseScreen {
         this.setState({transparent: !this.state.transparent});
     }
 
-    renderNormalContentView = () => {
+    _render = () => {
         let modalBackgroundStyle = {
             backgroundColor: this.state.transparent ? 'rgba(0, 0, 0, 0.5)' : '#f5fcff',
         }

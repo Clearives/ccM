@@ -40,7 +40,7 @@ export default class BaseScreen extends Component {
         console.log('《========' + this.constructor.name + ': componentWillUnmount' + '========》');
     }
 
-    renderNormalContentView = () => null
+    _render = () => null
     /** 更新视图，重新render */
     updateScreen = () => {
         this.setState({screenId: new Date().getTime().toString()})
@@ -135,7 +135,7 @@ export default class BaseScreen extends Component {
             );
         } else if (this.showType === 1) {
             // 加载成功
-            contentView = this.renderNormalContentView();
+            contentView = this._render();
         } else if (this.showType === 2) {
             // 加载失败
             contentView = null;

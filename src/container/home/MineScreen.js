@@ -33,7 +33,7 @@ export default class MineScreen extends BaseScreen {
     handleBack = () => {
         alert('这个页面返回不了')
     }
-    renderNormalContentView = () => {
+    _render = () => {
         return (
             <ScrollView>
                 <View style={styles.container}>

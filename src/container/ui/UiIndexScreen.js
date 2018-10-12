@@ -55,7 +55,7 @@ export default class MineScreen extends BaseScreen {
         )
     }
 
-    renderNormalContentView = () => {
+    _render = () => {
         return (
             <View style={styles.container}>
                 <View style={styles.title}>
