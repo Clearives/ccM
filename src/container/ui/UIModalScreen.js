@@ -71,11 +71,11 @@ export default class UIModalScreen extends BaseScreen {
                         <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
                             <Text>This modal was
                                 presented {this.state.animationType === 'none' ? 'without' : 'with'} animation.</Text>
-                            <TextB
+                            <Text
                                 onPress={this._setModalVisible.bind(this, false)}
                                 style={styles.modalText}>
                                 Close
-                            </TextB>
+                            </Text>
                         </View>
                     </View>
                 </Modal>
