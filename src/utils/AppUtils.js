@@ -109,7 +109,8 @@ export default class AppUtils {
         if (this.isIOSPlatform()) {
             statusBarHeight = this.isIOSDevice58() ? 44 : 20;
         } else {
-            statusBarHeight = Math.ceil(25 * PixelRatio.get()) / PixelRatio.get() + 0.5;
+            // statusBarHeight = Math.ceil(25 * PixelRatio.get()) / PixelRatio.get() + 0.5;
+            statusBarHeight = 0;
         }
         return statusBarHeight;
     }
@@ -122,9 +123,7 @@ export default class AppUtils {
         if (this.isIOSPlatform()) {
             navBarHeight = 44;
         } else {
-            NativeModules.RNAppManager.getNavigationBarHeight((height) => {
-                navBarHeight = height;
-            })
+            navBarHeight = 56;
         }
         return navBarHeight;
     }
