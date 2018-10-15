@@ -11,6 +11,7 @@ import WebScreen from "../components/screen/WebScreen";
 import UiIndexScreen from "./ui/UiIndexScreen";
 import UIFlatListScreen from "./ui/UIFlatListScreen";
 import UIModalScreen from "./ui/UIModalScreen"
+// import GalleryIndexScreen from "./gallery/GalleryIndexScreen"
 
 console.ignoredYellowBox = ['Remote debugger'];
 export default class MainComponent extends Component {
