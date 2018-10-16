@@ -19,27 +19,35 @@ export default class DiscoverScreen extends BaseScreen {
 
     _render = () => {
         return (
-            <ScrollableTabView
-                style={{marginTop: (AppUtils.isIOSPlatform() ? AppUtils.getStatusBarHeight() : 0)}}
-                initialPage={0}
-                renderTabBar={() => <DefaultTabBar />}
-            >
-                <ScrollView tabLabel="股票" style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>股票</Text>
-                    </View>
-                </ScrollView>
-                <ScrollView tabLabel="基金" style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>基金</Text>
-                    </View>
-                </ScrollView>
-                <ScrollView tabLabel="组合" style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>组合</Text>
-                    </View>
-                </ScrollView>
-            </ScrollableTabView>
+            <View style={styles.container}>
+                <ScrollableTabView
+                    style={{marginTop: (AppUtils.isIOSPlatform() ? AppUtils.getStatusBarHeight() : 0)}}
+                    initialPage={0}
+                    renderTabBar={() => <DefaultTabBar
+                        activeTextColor={`#f60`}
+                        inactiveTextColor={`#000`}
+                        textStyle={{fontFamily: 'PingFangSC-Regular',}}
+                        underlineStyle={{backgroundColor:'#f60',height: 1}}
+                        style={{borderColor: '#d1d5d8'}}
+                    />}
+                >
+                    <ScrollView tabLabel="股票" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>股票</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="基金" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>基金</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="组合" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>组合</Text>
+                        </View>
+                    </ScrollView>
+                </ScrollableTabView>
+            </View>
         );
     }
 }
@@ -54,7 +62,6 @@ const styles = StyleSheet.create({
     tabView: {
         flex: 1,
         padding: 10,
-        backgroundColor: 'rgba(0,0,0,0.01)',
     },
     card: {
         borderWidth: 1,
@@ -67,5 +74,5 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 2, height: 2, },
         shadowOpacity: 0.5,
         shadowRadius: 3,
-    },
+    }
 });
