@@ -1,58 +1,71 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from "react-native";
-export default class DiscoverScreen extends Component {
-    render() {
+import {Text, View, StyleSheet, Dimensions, ScrollView} from "react-native";
+import BaseScreen from '../../components/screen/BaseScreen';
+import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
+import AppUtils from "../../utils/AppUtils";
+
+
+export default class DiscoverScreen extends BaseScreen {
+    constructor(props) {
+        super(props);
+        this.navType = 1;
+    }
+    componentWillMount() {
+        this.showLoadingView();
+    }
+    componentDidMount() {
+        this.showNormalView();
+    }
+
+    _render = () => {
         return (
-            <View style={styles.container}>
-                <View style={styles.flexContainer}>
-                    <View style={styles.cell}>
-                        <Text style={styles.welcome}>
-                            cell1
-                        </Text>
+            <ScrollableTabView
+                style={{marginTop: (AppUtils.isIOSPlatform() ? AppUtils.getStatusBarHeight() : 0)}}
+                initialPage={0}
+                renderTabBar={() => <DefaultTabBar />}
+            >
+                <ScrollView tabLabel="股票" style={styles.tabView}>
+                    <View style={styles.card}>
+                        <Text>股票</Text>
                     </View>
-                    <View style={styles.cell}>
-                        <Text style={styles.welcome}>
-                            cell2
-                        </Text>
+                </ScrollView>
+                <ScrollView tabLabel="基金" style={styles.tabView}>
+                    <View style={styles.card}>
+                        <Text>基金</Text>
                     </View>
-                    <View style={styles.cell}>
-                        <Text style={styles.welcome}>
-                            cell3
-                        </Text>
+                </ScrollView>
+                <ScrollView tabLabel="组合" style={styles.tabView}>
+                    <View style={styles.card}>
+                        <Text>组合</Text>
                     </View>
-                </View>
-                <View style={[styles.box, {height: 100, backgroundColor: '#f60'}]}><Text style={styles.text}>1</Text></View>
-                <View style={[styles.box, {height: 100, backgroundColor: '#c7bcff'}]}><Text>2</Text></View>
-            </View>
+                </ScrollView>
+            </ScrollableTabView>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#F5FCFF',
-    },
-    box: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        color: '#fff'
-    },
-    flexContainer: {
-        // 容器需要添加direction才能变成让子元素flex
-        flexDirection: 'row'
-    },
-    cell: {
         flex: 1,
-        height: 50,
-        backgroundColor: '#7faa7f',
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc'
+        backgroundColor: '#f8f8f8',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10
+    tabView: {
+        flex: 1,
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.01)',
+    },
+    card: {
+        borderWidth: 1,
+        backgroundColor: '#fff',
+        borderColor: 'rgba(0,0,0,0.1)',
+        margin: 5,
+        height: 150,
+        padding: 15,
+        shadowColor: '#ccc',
+        shadowOffset: { width: 2, height: 2, },
+        shadowOpacity: 0.5,
+        shadowRadius: 3,
     },
 });

@@ -120,7 +120,9 @@ Tab.navigationOptions = ({ navigation, navigationOptions }) => {
             header: null
         }
     } else if (routes[index].routeName === 'Discover') {
-        options.title = '发现';
+        options = {
+            header: null
+        }
     }else if (routes[index].routeName === 'Mine') {
         options = {
             header: null
