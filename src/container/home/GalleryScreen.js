@@ -3,8 +3,7 @@ import {Text, View, StyleSheet, ScrollView, Image, FlatList, TouchableOpacity, D
 import BaseScreen from "../../components/screen/BaseScreen";
 import Swiper from 'react-native-swiper'
 import Http from "../../service/http";
-import LoadImage from "../../components/LoadImage"
-import AsyncImageAnimated from "react-native-async-image-animated"
+import LoadImage from "../../components/LoadImage";
 const {width, height} = Dimensions.get('window');
 
 export default class GalleryScreen extends BaseScreen {
@@ -55,7 +54,7 @@ export default class GalleryScreen extends BaseScreen {
                         placeholderColor={'#f8f8f8'}
                         animationStyle={`fade`}
                         source={{uri: item.cover}}
-                        style={{width: width / 2 - 2, height: 100}}
+                        style={{width: width / 2 - 2, height: (width / 2 - 2) * 480 / 640}}
                     />
                     <Text
                         style={{fontSize: 14, color: '#888586', marginTop: 12, textAlign: 'center'}}
