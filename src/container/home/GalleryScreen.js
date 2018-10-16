@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, ScrollView, Image, FlatList, TouchableOpacity, D
 import BaseScreen from "../../components/screen/BaseScreen";
 import Swiper from 'react-native-swiper'
 import Http from "../../service/http";
+import LoadImage from "../../components/LoadImage"
 import AsyncImageAnimated from "react-native-async-image-animated"
 const {width, height} = Dimensions.get('window');
 
@@ -24,9 +25,7 @@ export default class GalleryScreen extends BaseScreen {
         this.getGalleryCategory();
     }
     componentDidMount() {
-        setTimeout(() => {
-            this.showNormalView();
-        }, 500)
+        this.showNormalView();
     }
     getGalleryCategory = () => {
         Http.get("http://service.picasso.adesk.com/v1/vertical/category?adult=false&first=1")
@@ -52,7 +51,12 @@ export default class GalleryScreen extends BaseScreen {
                 }}
             >
                 <View style={{width: width / 2 - 2, marginTop: 20, marginRight: mr, backgroundColor: '#fff', minHeight: 100}}>
-                    <AsyncImageAnimated placeholderColor={'#f8f8f8'} animationStyle={`fade`} source={{uri: item.cover}} style={{width: width / 2 - 2, height: (width / 2 - 2) * 480 / 640}}></AsyncImageAnimated>
+                    <LoadImage
+                        placeholderColor={'#f8f8f8'}
+                        animationStyle={`fade`}
+                        source={{uri: item.cover}}
+                        style={{width: width / 2 - 2, height: 100}}
+                    />
                     <Text
                         style={{fontSize: 14, color: '#888586', marginTop: 12, textAlign: 'center'}}
                         numberOfLines={3}>{item.name}</Text>
