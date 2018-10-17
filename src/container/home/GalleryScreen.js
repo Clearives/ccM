@@ -4,6 +4,7 @@ import BaseScreen from "../../components/screen/BaseScreen";
 import Swiper from 'react-native-swiper'
 import Http from "../../service/http";
 import LoadImage from "../../components/LoadImage";
+import ImageButton from "../../components/ImageButton";
 const {width, height} = Dimensions.get('window');
 
 export default class GalleryScreen extends BaseScreen {
@@ -12,9 +13,9 @@ export default class GalleryScreen extends BaseScreen {
         this.navType = 0;
         this.navTitle = '图库';
         this.navHideBack = true;
-        this.navShowLine = false;
+        this.navShowLine = true;
         this.navShowRight = true;
-
+        this.navRightView = <Text onPress={() => {this.refresh()}}>刷新</Text>
         this.state = {
             category: []
         }
@@ -25,6 +26,13 @@ export default class GalleryScreen extends BaseScreen {
     }
     componentDidMount() {
         this.showNormalView();
+    }
+    refresh = () => {
+        this.showLoadingView();
+        this.getGalleryCategory();
+        setTimeout(() => {
+            this.showNormalView();
+        }, 1000)
     }
     getGalleryCategory = () => {
         Http.get("http://service.picasso.adesk.com/v1/vertical/category?adult=false&first=1")
