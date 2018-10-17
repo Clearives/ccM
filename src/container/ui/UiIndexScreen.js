@@ -33,6 +33,11 @@ export default class MineScreen extends BaseScreen {
                     key: '3',
                     title: 'Button',
                     url: 'UIButton'
+                },
+                {
+                    key: '4',
+                    title: 'Animated',
+                    url: 'UIAnimated'
                 }
             ]
         }

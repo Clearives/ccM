@@ -10,8 +10,8 @@ import MovieScreen from "./movie/MovieScreen";
 import WebScreen from "../components/screen/WebScreen";
 import UiIndexScreen from "./ui/UiIndexScreen";
 import UIFlatListScreen from "./ui/UIFlatListScreen";
-import UIModalScreen from "./ui/UIModalScreen"
-// import GalleryIndexScreen from "./gallery/GalleryIndexScreen"
+import UIModalScreen from "./ui/UIModalScreen";
+import UIAnimatedScreen from "./ui/UIAnimatedScreen";
 
 console.ignoredYellowBox = ['Remote debugger'];
 export default class MainComponent extends Component {
@@ -148,6 +148,9 @@ const StackRouteConfigs = {
     },
     UIModal: {
         screen: UIModalScreen
+    },
+    UIAnimated: {
+        screen: UIAnimatedScreen
     }
 };
 // const NavigationOptions = config => {
