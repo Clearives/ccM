@@ -24,6 +24,8 @@ export default class HomeScreen extends Component {
             tabBarHeight: AppUtils.getTabBarHeight(),
             bottomMargin: AppUtils.getBottomMargin()
         })
+        /** 调试code */
+        // this.props.navigation.push('UIAnimated')
     }
 
     goGalleryIndex = () => {
