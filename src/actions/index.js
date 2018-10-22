@@ -1,8 +1,10 @@
 import {bindActionCreators} from 'redux';
 import counterActions from './counter.js';
+import galleryActions from './gallery'
 
 const actions = {
-    counter: counterActions
+    counter: counterActions,
+    gallery: galleryActions
 }
 
 const camelCase = (str) => {

@@ -4,10 +4,11 @@ import BaseScreen from "../../components/screen/BaseScreen";
 import Swiper from 'react-native-swiper'
 import Http from "../../service/http";
 import LoadImage from "../../components/LoadImage";
-import ImageButton from "../../components/ImageButton";
 const {width, height} = Dimensions.get('window');
+import { connect } from 'react-redux';
+import Actions from '../../actions/index'
 
-export default class GalleryScreen extends BaseScreen {
+class GalleryScreen extends BaseScreen {
     constructor(props) {
         super(props);
         this.navType = 0;
@@ -16,33 +17,20 @@ export default class GalleryScreen extends BaseScreen {
         this.navShowLine = true;
         this.navShowRight = true;
         this.navRightView = <Text onPress={() => {this.refresh()}}>刷新</Text>
-        this.state = {
-            category: []
-        }
     }
     componentWillMount() {
         this.showLoadingView();
-        this.getGalleryCategory();
+        this.props.galleryGetCategory();
     }
     componentDidMount() {
         this.showNormalView();
     }
     refresh = () => {
         this.showLoadingView();
-        this.getGalleryCategory();
+        this.props.galleryGetCategory();
         setTimeout(() => {
             this.showNormalView();
         }, 1000)
-    }
-    getGalleryCategory = () => {
-        Http.get("http://service.picasso.adesk.com/v1/vertical/category?adult=false&first=1")
-            .then(res => {
-                console.log(res.data.res.category);
-                this.setState({category: res.data.res.category});
-            })
-            .catch(error => {
-                console.error(error);
-            });
     }
 
     _renderItem = ({item ,index}) => {
@@ -116,7 +104,7 @@ export default class GalleryScreen extends BaseScreen {
                 </View>
                 <View style={styles.itemContainer}>
                     <FlatList
-                        data={this.state.category}
+                        data={this.props.gallery.Category}
                         numColumns={2}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={this._renderItem}
@@ -126,6 +114,15 @@ export default class GalleryScreen extends BaseScreen {
         );
     }
 }
+
+const mapStateToProps = state => ({
+    gallery: state.gallery
+})
+
+const mapDispatchToProps = () => (Actions.dispatch('gallery'))
+
+export default connect(mapStateToProps, mapDispatchToProps)(GalleryScreen)
+
 
 const styles = StyleSheet.create({
     container: {

@@ -1,5 +1,6 @@
 import {createStore, applyMiddleware} from 'redux';
 import { createLogger } from 'redux-logger';
+import promiseMiddleware from 'redux-promise-middleware';
 import AppReducers from '../reducers';
 
 
@@ -9,7 +10,8 @@ const loggerMiddleware = createLogger({
     duration: true
 })
 const middlewares = [
-    loggerMiddleware
+    loggerMiddleware,
+    promiseMiddleware({promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR']})
 ]
 
 const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore)

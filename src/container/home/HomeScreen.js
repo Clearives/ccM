@@ -81,6 +81,14 @@ class HomeScreen extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    counter: state.counter
+})
+
+const mapDispatchToProps = () => (Actions.dispatch('counter'))
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -101,10 +109,3 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = state => ({
-    counter: state.counter
-})
-
-const mapDispatchToProps = () => (Actions.dispatch('counter'))
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
