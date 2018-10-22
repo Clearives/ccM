@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import actions from '../async/gallery';
+import actions from '../../actionCreators/gallery';
 
 const getCategory = createAction(`GETCATEGORY`, actions.galleryCategory)
 
