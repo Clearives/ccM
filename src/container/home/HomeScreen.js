@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from "react-native";
-import AppUtils from '../../utils/AppUtils'
+import AppUtils from '../../utils/AppUtils';
+import TextButton from '../../components/TextButton';
+import { connect } from 'react-redux';
+import Actions from '../../actions/index'
 
-export default class HomeScreen extends Component {
+
+class HomeScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -16,6 +20,7 @@ export default class HomeScreen extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
         this.setState({
             screenWidth: AppUtils.getScreenWidth(),
             ScreenHeight: AppUtils.getScreenHeight(),
@@ -28,8 +33,12 @@ export default class HomeScreen extends Component {
         // this.props.navigation.push('UIAnimated')
     }
 
-    goGalleryIndex = () => {
-        this.props.navigation.push('Gallery', {transition: 'forInitial'});
+    handleClick = (i) => {
+        console.log(i)
+        this.props.counterIncrement()
+    }
+    handleClick2 = () => {
+        this.props.counterDecrease()
     }
 
     render() {
@@ -46,6 +55,27 @@ export default class HomeScreen extends Component {
                     <Text style={{fontSize: 20}}>tabBarHeight: {this.state.tabBarHeight}</Text>
                     <Text style={{fontSize: 20}}>bottomMargin: {this.state.bottomMargin}</Text>
                 </View>
+                <View style={styles.counter}>
+                    <Text style={{fontSize: 20, color: '#f00', marginBottom: 20}}>
+                        {this.props.counter.count}
+                    </Text>
+                    <View style={{flexDirection: 'row'}}>
+
+                        <View style={{width: 100, height: 50, flex: 1}}>
+                            <TextButton
+                                onPress={() => this.handleClick(2)}
+                                text={`+`}
+                            />
+                        </View>
+                        <View style={{width: 100, height: 50, flex: 1}}>
+                            <TextButton
+                                onPress={this.handleClick2}
+                                text={`-`}
+                            />
+                        </View>
+                    </View>
+                </View>
+
             </View>
         );
     }
@@ -63,5 +93,18 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: 30,
         color: '#f60'
+    },
+    counter: {
+        flex: 1,
+        alignItems: 'center',
+        marginTop: 30
     }
 });
+
+const mapStateToProps = state => ({
+    counter: state.counter
+})
+
+const mapDispatchToProps = () => (Actions.dispatch('counter'))
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

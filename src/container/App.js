@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import MainComponent from './MainComponent'
+import {Provider} from 'react-redux'
+import store from '../store/index';
+import MainComponent from './MainComponent';
 
 export default class App extends Component {
     constructor(props) { //
@@ -11,7 +13,9 @@ export default class App extends Component {
 
     render() {
         return (
-            <MainComponent />
+            <Provider store={store}>
+                <MainComponent />
+            </Provider>
         );
     }
 }

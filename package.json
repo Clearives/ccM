@@ -8,11 +8,15 @@
     "ios-max": "react-native run-ios --simulator 'iPhone X'"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
     "react": "16.5.0",
     "react-native": "0.57.0",
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-swiper": "^1.5.13",
-    "react-navigation": "^2.12.1"
+    "react-navigation": "^2.12.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.1"
   },
   "devDependencies": {
     "axios": "^0.18.0",
