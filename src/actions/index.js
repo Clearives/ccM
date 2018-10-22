@@ -1,18 +1,25 @@
-import _ from 'lodash';
-import {bindActionCreators}  from 'redux';
+import {bindActionCreators} from 'redux';
 import counterActions from './counter.js';
 
 const actions = {
-  counter: counterActions
+    counter: counterActions
 }
 
+const camelCase = (str) => {
+    let re = /-(\w)/g
+    str = str.replace(re, ($0, $1) => {
+        return $1.toUpperCase()
+    });
+    return str
+};
+
 const convert = (actionCreators, name) => {
-  let ret = {}
-  _.each(actionCreators, function (action, funcName) {
-    let newActionName = _.camelCase(name + '_' + funcName)
-    ret[newActionName] = action
-  })
-  return ret
+    let ret = {}
+    for (let k in actionCreators) {
+        let newActionName = camelCase(name + '-' + k)
+        ret[newActionName] = actionCreators[k]
+    }
+    return ret
 }
 
 const dispatch = name => dispatch => {

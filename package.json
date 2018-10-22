@@ -8,7 +8,6 @@
     "ios-max": "react-native run-ios --simulator 'iPhone X'"
   },
   "dependencies": {
-    "lodash": "^4.17.11",
     "react": "16.5.0",
     "react-native": "0.57.0",
     "react-native-scrollable-tab-view": "^0.8.0",
