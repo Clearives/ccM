@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, Dimensions, ScrollView} from "react-native";
 import BaseScreen from '../../components/screen/BaseScreen';
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 import AppUtils from "../../utils/AppUtils";
+import DailyArticle from "../article/DailyArticle"
 
 
 export default class DiscoverScreen extends BaseScreen {
@@ -31,11 +32,11 @@ export default class DiscoverScreen extends BaseScreen {
                         style={{borderColor: '#d1d5d8'}}
                     />}
                 >
-                    <ScrollView tabLabel="股票" style={styles.tabView}>
-                        <View style={styles.card}>
-                            <Text>股票</Text>
-                        </View>
-                    </ScrollView>
+                    <View tabLabel="每日一文" style={styles.tabView}>
+                        <ScrollView style={[styles.card, {}]}>
+                            <DailyArticle {...this.props}/>
+                        </ScrollView>
+                    </View>
                     <ScrollView tabLabel="基金" style={styles.tabView}>
                         <View style={styles.card}>
                             <Text>基金</Text>
