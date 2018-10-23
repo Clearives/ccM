@@ -1,11 +1,21 @@
-import { handleActions } from 'redux-actions';
-import { INCREMENT, DECREASE} from '../constants/ActionTypes';
+import {handleActions} from 'redux-actions';
 
 const defaultState = {
     count: 0
 }
 
 export default handleActions({
-    [INCREMENT]: state => ({...state, count: state.count + 1}),
-    [DECREASE]: state => ({...state, count: state.count - 1})
+    increment: (state, action) => {
+        return {
+            ...state,
+            count: state.count + action.payload
+        }
+    },
+    decrease: state => {
+        return {
+            ...state,
+            count: state.count - 1
+        }
+    }
 }, defaultState)
+

@@ -5,7 +5,7 @@ const defaultState = {
 }
 
 export default handleActions({
-    [`GETCATEGORY_SUCCESS`]: (state, action) => {
+    [`get_category_success`]: (state, action) => {
         return {
             ...state,
             Category: action.payload.data.res.category

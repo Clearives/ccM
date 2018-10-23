@@ -11,7 +11,7 @@ const loggerMiddleware = createLogger({
 })
 const middlewares = [
     loggerMiddleware,
-    promiseMiddleware({promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR']})
+    promiseMiddleware({promiseTypeSuffixes: ['loading', 'success', 'error']})
 ]
 
 const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore)

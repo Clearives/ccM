@@ -34,8 +34,7 @@ class HomeScreen extends Component {
     }
 
     handleClick = (i) => {
-        console.log(i)
-        this.props.counterIncrement()
+        this.props.counterIncrement(i)
     }
     handleClick2 = () => {
         this.props.counterDecrease()
