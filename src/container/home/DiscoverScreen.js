@@ -18,7 +18,7 @@ class DiscoverScreen extends BaseScreen {
         this.props.articleGetToday();
     }
     componentWillReceiveProps(nextProps) {
-        if (Object.keys(nextProps.article.todayData).length > 0) {
+        if (Object.keys(this.props.article.todayData).length === 0 && Object.keys(nextProps.article.todayData).length > 0) {
             this.showNormalView();
         }
     }

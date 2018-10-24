@@ -51,9 +51,10 @@ export default class DailyArticle extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{paddingBottom: 20}}>
                 <View style={styles.title}>
                     <Text style={styles.titleText}>{this.props.data.title}</Text>
+                    <Text style={styles.dateText}>{this.props.data.date.curr}</Text>
                 </View>
                 <HTMLView
                     value={this.props.data.content || ''}
@@ -80,11 +81,17 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 50,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 10
     },
     titleText: {
         fontSize: 24,
         fontWeight: 'bold'
+    },
+    dateText: {
+        fontSize: 16,
+        color: '#000',
+        margin: 8
     },
     a: {
         color: '#41ABFE',
@@ -93,6 +100,7 @@ const styles = StyleSheet.create({
     p: {
         fontSize: 18,
         marginBottom: 10,
-        color: '#000'
+        color: '#000',
+        lineHeight: 24
     }
 });
