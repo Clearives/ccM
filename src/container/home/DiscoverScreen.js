@@ -4,6 +4,7 @@ import BaseScreen from '../../components/screen/BaseScreen';
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 import AppUtils from "../../utils/AppUtils";
 import DailyArticle from "../article/DailyArticle";
+import TextButton from "../../components/TextButton";
 import { connect } from 'react-redux';
 import Actions from "../../actions";
 
@@ -23,6 +24,7 @@ class DiscoverScreen extends BaseScreen {
         }
     }
     _render = () => {
+        const articleData = Object.keys(this.props.article.randomData).length > 0 ? this.props.article.randomData : this.props.article.todayData
         return (
             <View style={styles.container}>
                 <ScrollableTabView
@@ -38,9 +40,14 @@ class DiscoverScreen extends BaseScreen {
                 >
                     <View tabLabel="每日一文" style={styles.tabView}>
                         <ScrollView style={[styles.card, {}]}>
+                            <TextButton
+                                style={{marginBottom: 20, backgroundColor: '#999'}}
+                                text={`随机一下`}
+                                onPress={() => {this.props.articleGetRandom()}}
+                            />
                             <DailyArticle
                                 {...this.props}
-                                data={this.props.article.todayData}
+                                data={articleData}
                             />
                         </ScrollView>
                     </View>

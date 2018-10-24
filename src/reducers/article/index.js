@@ -1,7 +1,8 @@
 import { handleActions } from 'redux-actions';
 
 const defaultState = {
-    todayData: {}
+    todayData: {},
+    randomData: {}
 }
 
 export default handleActions({
@@ -11,4 +12,10 @@ export default handleActions({
             todayData: action.payload.data.data
         }
     },
+    [`get_random_success`]: (state, action) => {
+        return {
+            ...state,
+            randomData: action.payload.data.data
+        }
+    }
 }, defaultState)
