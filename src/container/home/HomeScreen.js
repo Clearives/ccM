@@ -20,7 +20,6 @@ class HomeScreen extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
         this.setState({
             screenWidth: AppUtils.getScreenWidth(),
             ScreenHeight: AppUtils.getScreenHeight(),
