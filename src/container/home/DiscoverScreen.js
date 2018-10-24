@@ -3,21 +3,25 @@ import {Text, View, StyleSheet, Dimensions, ScrollView} from "react-native";
 import BaseScreen from '../../components/screen/BaseScreen';
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 import AppUtils from "../../utils/AppUtils";
-import DailyArticle from "../article/DailyArticle"
+import DailyArticle from "../article/DailyArticle";
+import { connect } from 'react-redux';
+import Actions from "../../actions";
 
 
-export default class DiscoverScreen extends BaseScreen {
+class DiscoverScreen extends BaseScreen {
     constructor(props) {
         super(props);
         this.navType = 1;
     }
     componentWillMount() {
         this.showLoadingView();
+        this.props.articleGetToday();
     }
-    componentDidMount() {
-        this.showNormalView();
+    componentWillReceiveProps(nextProps) {
+        if (Object.keys(nextProps.article.todayData).length > 0) {
+            this.showNormalView();
+        }
     }
-
     _render = () => {
         return (
             <View style={styles.container}>
@@ -34,7 +38,10 @@ export default class DiscoverScreen extends BaseScreen {
                 >
                     <View tabLabel="每日一文" style={styles.tabView}>
                         <ScrollView style={[styles.card, {}]}>
-                            <DailyArticle {...this.props}/>
+                            <DailyArticle
+                                {...this.props}
+                                data={this.props.article.todayData}
+                            />
                         </ScrollView>
                     </View>
                     <ScrollView tabLabel="基金" style={styles.tabView}>
@@ -52,6 +59,14 @@ export default class DiscoverScreen extends BaseScreen {
         );
     }
 }
+
+const mapStateToProps = state => ({
+    article: state.article
+})
+
+const mapDispatchToProps = () => (Actions.dispatch('article'))
+
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoverScreen)
 
 const styles = StyleSheet.create({
     container: {

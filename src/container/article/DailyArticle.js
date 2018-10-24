@@ -50,14 +50,13 @@ export default class DailyArticle extends Component {
     }
 
     render() {
-        const htmlContent = `<p>醉人的夜，一枚枚飞弹划破夏日夜空。</p><p>我们部落的人都住在茅草、泥巴搭起来的棚屋里。采完椰子收工后晚上回到家，疲惫不堪的我们待在门口，或蹲，或躺在草席上，望着星空发呆，身边是顶着圆滚滚的肚子在地上玩耍的小孩。许久以来，或许一直以来，我们感</p><p><a href="https://www.baidu.com">百度</a></p>`;
         return (
             <View>
                 <View style={styles.title}>
-                    <Text style={styles.titleText}>我是标题</Text>
+                    <Text style={styles.titleText}>{this.props.data.title}</Text>
                 </View>
                 <HTMLView
-                    value={htmlContent}
+                    value={this.props.data.content || ''}
                     renderNode={this.renderNode}
                     paragraphBreak={''}
                 />
