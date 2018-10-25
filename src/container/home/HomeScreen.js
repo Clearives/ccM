@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from "react-native";
 import AppUtils from '../../utils/AppUtils';
 import TextButton from '../../components/TextButton';
 import Toast from '../../utils/Toast';
+import { Button } from 'antd-mobile';
 import { connect } from 'react-redux';
 import Actions from '../../actions/index'
 
@@ -75,6 +76,7 @@ class HomeScreen extends Component {
                         </View>
                     </View>
                 </View>
+                <Button onClick={() => Toast.showLoadingToast('加载中...')}>antd-mobile</Button>
             </View>
         );
     }
