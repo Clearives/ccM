@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from "react-native";
 import AppUtils from '../../utils/AppUtils';
 import TextButton from '../../components/TextButton';
+import Toast from '../../utils/Toast';
 import { connect } from 'react-redux';
 import Actions from '../../actions/index'
 
@@ -33,6 +34,7 @@ class HomeScreen extends Component {
     }
 
     handleClick = (i) => {
+        Toast.showToast('12')
         this.props.counterIncrement(i)
     }
     handleClick2 = () => {
@@ -73,7 +75,6 @@ class HomeScreen extends Component {
                         </View>
                     </View>
                 </View>
-
             </View>
         );
     }
