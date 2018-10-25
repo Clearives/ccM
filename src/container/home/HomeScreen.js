@@ -35,7 +35,7 @@ class HomeScreen extends Component {
     }
 
     handleClick = (i) => {
-        Toast.showToast('12')
+        Toast.showToast('我是弹窗')
         this.props.counterIncrement(i)
     }
     handleClick2 = () => {
@@ -76,7 +76,7 @@ class HomeScreen extends Component {
                         </View>
                     </View>
                 </View>
-                <Button onClick={() => Toast.showLoadingToast('加载中...')}>antd-mobile</Button>
+                <Button onClick={() => {Toast.showLoadingToast('加载中...');setTimeout(() => {Toast.hideToast()}, 2000)}}>antd按钮</Button>
             </View>
         );
     }
