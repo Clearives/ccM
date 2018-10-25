@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import Hud from '../../utils/Hud';
 
 const defaultState = {
     todayData: {},
@@ -16,6 +17,14 @@ export default handleActions({
         return {
             ...state,
             randomData: action.payload.data.data
+        }
+    },
+    [`get_random_error`]: (state, action) => {
+        alert(action.payload);
+        Hud.hidden();
+        return {
+            ...state,
+            randomData: {}
         }
     }
 }, defaultState)

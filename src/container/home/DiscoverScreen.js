@@ -5,6 +5,8 @@ import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view
 import AppUtils from "../../utils/AppUtils";
 import DailyArticle from "../article/DailyArticle";
 import TextButton from "../../components/TextButton";
+import Hud from "../../utils/Hud";
+
 import { connect } from 'react-redux';
 import Actions from "../../actions";
 
@@ -22,6 +24,19 @@ class DiscoverScreen extends BaseScreen {
         if (Object.keys(this.props.article.todayData).length === 0 && Object.keys(nextProps.article.todayData).length > 0) {
             this.showNormalView();
         }
+        if (Object.keys(this.props.article.todayData).length > 0 && Object.keys(nextProps.article.randomData).length === 0) {
+            this.showERrrorView();
+        }
+        console.log(nextProps)
+        // if (Object.keys(nextProps.article.randomData).length > 0 && this.props.article.randomData !== nextProps.article.randomData ) {
+        //     Hud.hidden();
+        // }
+    }
+    getRandom = () => {
+        Hud.show();
+        this.props.articleGetRandom().then(() => {
+            Hud.hidden();
+        });
     }
     _render = () => {
         const articleData = Object.keys(this.props.article.randomData).length > 0 ? this.props.article.randomData : this.props.article.todayData
@@ -43,7 +58,7 @@ class DiscoverScreen extends BaseScreen {
                             <TextButton
                                 style={{marginBottom: 20, backgroundColor: '#999'}}
                                 text={`随机一下`}
-                                onPress={() => {this.props.articleGetRandom()}}
+                                onPress={() => {this.getRandom()}}
                             />
                             <DailyArticle
                                 {...this.props}
