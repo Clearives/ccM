@@ -78,7 +78,7 @@ export default class BaseScreen extends Component {
     }
 
     showERrrorView = () => {
-        this.showType = 1;
+        this.showType = 2;
         this.updateScreen();
     }
 
@@ -138,7 +138,7 @@ export default class BaseScreen extends Component {
             contentView = this._render();
         } else if (this.showType === 2) {
             // 加载失败
-            contentView = null;
+            contentView = (<View style={styles.loadingAndErrorViewContainer}><Text>加载失败</Text></View>);
         }
         return (
             <View style={styles.container}>
