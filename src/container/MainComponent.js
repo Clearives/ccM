@@ -12,6 +12,7 @@ import UiIndexScreen from "./ui/UiIndexScreen";
 import UIFlatListScreen from "./ui/UIFlatListScreen";
 import UIModalScreen from "./ui/UIModalScreen";
 import UIAnimatedScreen from "./ui/UIAnimatedScreen";
+import UIParallaxScreen from "./ui/UIParallaxScreen";
 
 console.ignoredYellowBox = ['Remote debugger'];
 export default class MainComponent extends Component {
@@ -151,6 +152,9 @@ const StackRouteConfigs = {
     },
     UIAnimated: {
         screen: UIAnimatedScreen
+    },
+    UIParallax: {
+        screen: UIParallaxScreen
     }
 };
 // const NavigationOptions = config => {

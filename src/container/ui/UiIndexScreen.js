@@ -38,6 +38,11 @@ export default class MineScreen extends BaseScreen {
                     key: '4',
                     title: 'Animated',
                     url: 'UIAnimated'
+                },
+                {
+                    key: '5',
+                    title: 'Parallax',
+                    url: 'UIParallax'
                 }
             ]
         }
