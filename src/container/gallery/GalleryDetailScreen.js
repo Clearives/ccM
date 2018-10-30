@@ -4,6 +4,7 @@ import BaseScreen from "../../components/screen/BaseScreen";
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Http from "../../service/http";
 import LoadImage from "../../components/LoadImage";
+import AppUtils from "../../utils/AppUtils";
 
 const {width, height} = Dimensions.get('window');
 const ds = new ListView.DataSource({
@@ -25,8 +26,14 @@ export default class GalleryIndexScreen extends BaseScreen {
         this.state = {isModal: false, ready: true, galleryDetail: [], index: 0}
     }
 
-    componentDidMount() {
+    componentWillMount() {
+        super.componentWillMount()
+        this.showLoadingView()
         this.getGalleryDetail()
+    }
+
+    componentDidMount() {
+        super.componentDidMount()
     }
 
     itemView = (rowData, sectionId, rowId) => {
@@ -54,19 +61,12 @@ export default class GalleryIndexScreen extends BaseScreen {
                 this.setState({galleryDetail: res.data.res.vertical})
                 setTimeout(() => {
                     this.setState({ready: false})
+                    this.showNormalView()
                 }, 500)
             })
             .catch(error => {
                 console.error(error);
             });
-    }
-
-    renderLoad() { //这里是写的一个loading
-        return (
-            <View style={{marginTop: (height / 2) - 80}}>
-                <ActivityIndicator animating={this.state.animating} size={"large"}/>
-            </View>
-        )
     }
 
     getImagesArr = (img) => {
@@ -85,34 +85,31 @@ export default class GalleryIndexScreen extends BaseScreen {
         return (
             <View style={{flex: 1, backgroundColor: '#f8f8f8'}}>
                 {
-                    this.state.ready
-                        ? this.renderLoad()
-                        :
-                        this.state.isModal
-                            ? <View style={{position: "absolute", top: 0, bottom: 0, left: 0, right: 0}}>
-                                <Modal
-                                    animationType={"fade"}
-                                    transparent={true}
-                                    visible={this.state.isModal}
-                                >
-                                    <ImageViewer imageUrls={images}
-                                                 index={parseInt(this.state.index)}
-                                                 onClick={() => {
-                                                     this.setState({isModal: false})
-                                                 }}
-                                    />
-                                </Modal>
-                            </View>
-                            :
-                            <View style={styles.itemContainer}>
-                                <ListView
-                                    enableEmptySections
-                                    initialListSize={4}
-                                    contentContainerStyle={styles.list}
-                                    dataSource={c}
-                                    renderRow={this.itemView}
+                    this.state.isModal
+                        ? <View style={{position: "absolute", top: 0, bottom: 0, left: 0, right: 0}}>
+                            <Modal
+                                animationType={"fade"}
+                                transparent={true}
+                                visible={this.state.isModal}
+                            >
+                                <ImageViewer imageUrls={images}
+                                             index={parseInt(this.state.index)}
+                                             onClick={() => {
+                                                 this.setState({isModal: false})
+                                             }}
                                 />
-                            </View>
+                            </Modal>
+                        </View>
+                        :
+                        <View style={styles.itemContainer}>
+                            <ListView
+                                enableEmptySections
+                                initialListSize={4}
+                                contentContainerStyle={styles.list}
+                                dataSource={c}
+                                renderRow={this.itemView}
+                            />
+                        </View>
                 }
             </View>
         );
