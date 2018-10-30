@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, ScrollView, Image, FlatList, TouchableOpacity, Dimensions} from "react-native";
 import BaseScreen from "../../components/screen/BaseScreen";
 import Swiper from 'react-native-swiper'
-import Http from "../../service/http";
 import LoadImage from "../../components/LoadImage";
 const {width, height} = Dimensions.get('window');
 import { connect } from 'react-redux';
