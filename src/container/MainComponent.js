@@ -5,6 +5,7 @@ import HomeScreen from "./home/HomeScreen";
 import DiscoverScreen from "./home/DiscoverScreen";
 import MineScreen from "./home/MineScreen";
 import GalleryScreen from "./home/GalleryScreen";
+import GalleryDetailScreen from "./gallery/GalleryDetailScreen";
 import TabBarItem from "../components/TabBarItem";
 import MovieScreen from "./movie/MovieScreen";
 import WebScreen from "../components/screen/WebScreen";
@@ -140,6 +141,9 @@ const StackRouteConfigs = {
     },
     Web: {
         screen: WebScreen
+    },
+    GalleryDetail: {
+        screen: GalleryDetailScreen
     },
     UiIndex: {
         screen: UiIndexScreen
