@@ -19,16 +19,23 @@ class GalleryScreen extends BaseScreen {
     }
     componentWillMount() {
         this.showLoadingView();
-        this.props.galleryGetCategory();
+        this.props.galleryGetCategory()
     }
     componentDidMount() {
-        this.showNormalView();
+        super.componentDidMount()
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (Object.keys(this.props.gallery.Category).length === 0 && Object.keys(nextProps.gallery.Category).length > 0) {
+            this.showNormalView();
+        }
+    }
+
     refresh = () => {
         this.showLoadingView();
-        this.props.galleryGetCategory();
+        this.props.galleryGetCategory()
         setTimeout(() => {
-            this.showNormalView();
+            this.showNormalView()
         }, 1000)
     }
 
