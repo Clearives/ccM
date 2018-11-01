@@ -91,7 +91,7 @@ export default class MineScreen extends BaseScreen {
                         <ListItem
                             listTitle={`我的投资`}
                             style={styles.listItem}
-                            onPress={() => {alert('我的投资')}}
+                            onPress={() => {this.props.navigation.push('DebtList')}}
                         >
                             <Text style={styles.textOther}>跳转</Text>
                         </ListItem>

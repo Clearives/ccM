@@ -31,7 +31,7 @@ class HomeScreen extends Component {
             bottomMargin: AppUtils.getBottomMargin()
         })
         /** 调试code */
-        // this.props.navigation.push('UIAnimated')
+        this.props.navigation.push('DebtList')
     }
 
     handleClick = (i) => {
