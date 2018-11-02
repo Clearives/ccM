@@ -14,7 +14,6 @@ export default class DebtListScreen extends BaseScreen {
 
     constructor(props) {
         super(props);
-
         this.state = {
             pageIndex: 1,
             pageSize: 10,
@@ -42,13 +41,12 @@ export default class DebtListScreen extends BaseScreen {
         Http.postData(url, param)
             .then(res => {
                 let tempData = i === 1 ? [] : this.state.data
-
                 this.setState({
                     refreshing: false,
                     loading: tempData.length >= 90 ? 3 : 1,
                     data: tempData.concat(res.data.data.data),
                     pageIndex: i + 1
-                }, () => {console.log(this.state)})
+                })
             })
             .catch(error => {
                 console.error(error);
@@ -123,7 +121,7 @@ export default class DebtListScreen extends BaseScreen {
                     ListHeaderComponent={this._renderHeader}
                     ListFooterComponent={this._renderFooter}
                     keyExtractor={(item, index) => index.toString()}
-                    onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+                    onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}    // 解决上拉加载更多执行多次bug
                     onEndReachedThreshold={0}
                     onEndReached={this._loadMore}
                     refreshControl={
