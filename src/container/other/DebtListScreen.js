@@ -23,6 +23,8 @@ export default class DebtListScreen extends BaseScreen {
         };
         this.navTitle = 'DebtList';
         this.navShowLine = true;
+        this.navShowRight = true;
+        this.navRightView = <Text onPress={() => {this._refresh()}}>刷新</Text>
         this.onEndReachedCalledDuringMomentum = false
     }
 
@@ -56,7 +58,7 @@ export default class DebtListScreen extends BaseScreen {
     _refresh = () => {
         this.setState({
             refreshing: true,
-        });
+        },() => {console.log(this.state.refreshing)});
         setTimeout(() => {
             this.getAssetDebtList(1)
         }, 1500)
