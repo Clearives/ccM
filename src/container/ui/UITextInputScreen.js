@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TextInput} from "react-native";
 import BaseScreen from '../../components/screen/BaseScreen';
 
-export default class UiTextInputScreen extends BaseScreen {
+export default class UITextInputScreen extends BaseScreen {
     static navigationOptions = ({navigation}) => {
         return {
             header: null

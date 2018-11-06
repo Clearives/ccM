@@ -4,7 +4,7 @@ import BaseScreen from '../../components/screen/BaseScreen';
 import ListItem from "../../components/ListItem"
 import AppUtils from "../../utils/AppUtils"
 
-export default class MineScreen extends BaseScreen {
+export default class UiIndexScreen extends BaseScreen {
     static navigationOptions = ({navigation}) => {
         return {
             header: null
@@ -43,6 +43,11 @@ export default class MineScreen extends BaseScreen {
                     key: '5',
                     title: 'Parallax',
                     url: 'UIParallax'
+                },
+                {
+                    key: '6',
+                    title: 'TextInput',
+                    url: 'UiTextInput'
                 }
             ]
         }
