@@ -14,6 +14,7 @@ import UIFlatListScreen from "./ui/UIFlatListScreen";
 import UIModalScreen from "./ui/UIModalScreen";
 import UIAnimatedScreen from "./ui/UIAnimatedScreen";
 import UIParallaxScreen from "./ui/UIParallaxScreen";
+import UITextInputScreen from "./ui/UITextInputScreen";
 import DebtListScreen from "./other/DebtListScreen";
 
 console.ignoredYellowBox = ['Remote debugger'];
@@ -160,6 +161,9 @@ const StackRouteConfigs = {
     },
     UIParallax: {
         screen: UIParallaxScreen
+    },
+    UiTextInput: {
+        screen: UITextInputScreen
     },
     DebtList: {
         screen: DebtListScreen
