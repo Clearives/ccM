@@ -1,0 +1,2 @@
+const sync = {}
+export {sync}
