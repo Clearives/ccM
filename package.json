@@ -32,6 +32,7 @@
     "jest": "23.6.0",
     "merge": "^1.2.1",
     "metro-react-native-babel-preset": "0.45.2",
+    "react-native-storage": "^0.2.3",
     "react-test-renderer": "16.5.0"
   },
   "jest": {
