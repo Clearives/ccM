@@ -30,7 +30,33 @@ const _storage = {
             data: obj,
             expires: defaultExpires
         })
-    }
+    },
+    load(key, callBack) {
+        initStorage()
+        storage.load({
+            key: key,
+            autoSync: true,
+            syncInBackground: true,
+            syncParams: {
+                extraFetchOptions: {
+                },
+                someFlag: true,
+            }
+        }).then(ret => {
+            callBack && callBack(ret)
+            return ret
+        }).catch(err => {
+            console.warn(err.message);
+            switch (err.name) {
+                case 'NotFoundError':
+                    // TODO
+                    break
+                case 'ExpiredError':
+                    // TODO
+                    break
+            }
+        })
+    },
 }
 
 export {_storage as storage}
