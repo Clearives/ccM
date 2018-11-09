@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput} from "react-native";
+import {StyleSheet, Text, View, TextInput, FlatList} from "react-native";
 import BaseScreen from '../../components/screen/BaseScreen';
 import {storage} from "../../utils/storage";
 
@@ -40,11 +40,17 @@ export default class UITextInputScreen extends BaseScreen {
         console.log("您输入的内容为：" + this.state.text);
         let textList = this.state.textList
         textList.push(this.state.text)
-        this.setState({textList: textList})
         storage.save('textList', textList)
     }
 
+    _renderItem = ({item, index}) => {
+        return (
+            <Text key={index}>{item}</Text>
+        )
+    }
+
     _render = () => {
+        console.log(1)
         return (
             <View style={styles.container}>
                 <View style={styles.title}>
@@ -66,6 +72,14 @@ export default class UITextInputScreen extends BaseScreen {
                         </View>
                     </View>
                     <Text style={styles.tip}>已输入{this.state.text.length}个文字</Text>
+                    <View>
+                        <FlatList
+                            data={this.state.textList}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={this._renderItem}
+                            extraData={this.state}
+                        />
+                    </View>
                 </View>
             </View>
         );
