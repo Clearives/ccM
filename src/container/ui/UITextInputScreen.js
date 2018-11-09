@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TextInput} from "react-native";
 import BaseScreen from '../../components/screen/BaseScreen';
+import {storage} from "../../utils/storage";
 
 export default class UITextInputScreen extends BaseScreen {
     static navigationOptions = ({navigation}) => {
@@ -16,7 +17,8 @@ export default class UITextInputScreen extends BaseScreen {
         this.navShowLine = true;
 
         this.state = {
-            text: ''
+            text: '',
+            textList: []
         }
     }
 
@@ -26,10 +28,20 @@ export default class UITextInputScreen extends BaseScreen {
 
     componentDidMount() {
         this.showNormalView();
+        storage.load('textList', (item) => {
+            console.log(item)
+            this.setState({
+                textList: item
+            })
+        })
     }
 
     search = () => {
         console.log("您输入的内容为：" + this.state.text);
+        let textList = this.state.textList
+        textList.push(this.state.text)
+        this.setState({textList: textList})
+        storage.save('textList', textList)
     }
 
     _render = () => {
