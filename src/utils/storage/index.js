@@ -46,17 +46,36 @@ const _storage = {
             callBack && callBack(ret)
             return ret
         }).catch(err => {
-            console.warn(err.message);
+            // console.warn(err.message);
             switch (err.name) {
                 case 'NotFoundError':
                     // TODO
+                    return null
                     break
                 case 'ExpiredError':
                     // TODO
+                    return null
                     break
             }
         })
     },
+    // !! 清除某个key下的所有数据(仅key-id数据)
+    clearMapForKey(key) {
+        initStorage()
+        storage.clearMapForKey(key)
+    },
+    // 删除单个数据
+    remove(key) {
+        initStorage()
+        storage.remove({
+            key: key
+        })
+    },
+    // !! 清空map，移除所有"key-id"数据（但会保留只有key的数据）
+    clearMap() {
+        initStorage()
+        storage.clearMap()
+    }
 }
 
 export {_storage as storage}
