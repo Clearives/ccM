@@ -33,7 +33,7 @@ export default class UITextInputScreen extends BaseScreen {
         storage.load('textList', (item) => {
             console.log(item)
             this.setState({
-                textList: item
+                textList: item || []
             })
         })
     }
