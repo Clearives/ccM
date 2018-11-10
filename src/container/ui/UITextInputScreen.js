@@ -15,6 +15,8 @@ export default class UITextInputScreen extends BaseScreen {
         this.navType = 0;
         this.navTitle = 'TextInput';
         this.navShowLine = true;
+        this.navShowRight = true;
+        this.navRightView = <Text onPress={() => {this._clear()}}>清除数据</Text>
 
         this.state = {
             text: '',
@@ -40,6 +42,10 @@ export default class UITextInputScreen extends BaseScreen {
         console.log("您输入的内容为：" + this.state.text);
         let textList = this.state.textList
         textList.push(this.state.text)
+        this.setState({
+            text: '',
+            textList: textList
+        })
         storage.save('textList', textList)
     }
 
@@ -49,8 +55,14 @@ export default class UITextInputScreen extends BaseScreen {
         )
     }
 
+    _clear = () => {
+        storage.remove('textList')
+        this.setState({
+            textList: []
+        })
+    }
+
     _render = () => {
-        console.log(1)
         return (
             <View style={styles.container}>
                 <View style={styles.title}>
@@ -63,6 +75,7 @@ export default class UITextInputScreen extends BaseScreen {
                                 style={styles.input}
                                 returnKeyType="search"
                                 placeholder="请输入关键字"
+                                value = {this.state.text}
                                 onChangeText={(text) => this.setState({text})}/>
                         </View>
                         <View style={styles.btn}>
@@ -77,7 +90,7 @@ export default class UITextInputScreen extends BaseScreen {
                             data={this.state.textList}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={this._renderItem}
-                            extraData={this.state}
+                            extraData={this.state} // 解决render不重新渲染flatlist
                         />
                     </View>
                 </View>
