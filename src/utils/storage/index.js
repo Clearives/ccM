@@ -50,10 +50,12 @@ const _storage = {
             switch (err.name) {
                 case 'NotFoundError':
                     // TODO
+                    callBack(null)
                     return null
                     break
                 case 'ExpiredError':
                     // TODO
+                    callBack(null)
                     return null
                     break
             }

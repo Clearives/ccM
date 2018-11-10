@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, FlatList} from "react-native";
 import BaseScreen from '../../components/screen/BaseScreen';
 import ListItem from "../../components/ListItem"
 import AppUtils from "../../utils/AppUtils"
+import {storage} from "../../utils/storage";
 
 export default class UiIndexScreen extends BaseScreen {
     static navigationOptions = ({navigation}) => {
@@ -16,6 +17,8 @@ export default class UiIndexScreen extends BaseScreen {
         this.navType = 0;
         this.navTitle = '我的组件';
         this.navShowLine = true;
+        this.navShowRight = true;
+        this.navRightView = <Text onPress={() => {this._addMenu()}}>添加菜单</Text>
 
         this.state = {
             UIData: [
@@ -55,6 +58,9 @@ export default class UiIndexScreen extends BaseScreen {
 
     componentWillMount() {
         this.showLoadingView();
+        storage.load('UIData', (item) => {
+            console.log(item)
+        })
     }
 
     componentDidMount() {
@@ -68,6 +74,10 @@ export default class UiIndexScreen extends BaseScreen {
             >
             </ListItem>
         )
+    }
+
+    _addMenu = () => {
+
     }
 
     _render = () => {
