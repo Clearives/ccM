@@ -88,6 +88,15 @@ export default class UiIndexScreen extends BaseScreen {
         storage.save('UIData', _UIData)
     }
 
+    _removeMenu = (key) => {
+        let _UIData = []
+        this.state.UIData.map((item) => {
+            item.key !== key && _UIData.push(item)
+        })
+        this.setState({UIData: _UIData})
+        storage.save('UIData', _UIData)
+    }
+
     _render = () => {
         return (
             <View style={styles.container}>
