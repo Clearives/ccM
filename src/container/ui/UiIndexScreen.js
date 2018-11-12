@@ -76,8 +76,16 @@ export default class UiIndexScreen extends BaseScreen {
         )
     }
 
-    _addMenu = () => {
-
+    _addMenu = (item) => {
+        let _UIData = this.state.UIData
+        let itemObj = {
+            key: (_UIData.length + 1).toString(),
+            title: item,
+            url: 'Ui' + item
+        }
+        _UIData.push(itemObj)
+        this.setState({UIData: _UIData})
+        storage.save('UIData', _UIData)
     }
 
     _render = () => {
